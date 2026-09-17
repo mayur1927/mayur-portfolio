@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+  background: theme("colors.accent");
+  color: #04100d;
+}
+
+html {
+  background: theme("colors.bg");
+}
+
+body {
+  background: theme("colors.bg");
+  color: theme("colors.fg");
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+/* Reveal targets used by AnimatedText — start hidden, JS fades them in */
+.reveal-word {
+  display: inline-block;
+  opacity: 0.15;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Toggled directly via JS in Toolkit.tsx (plain classList, not a Tailwind
+   utility) since the highlight target lives in a different component tree. */
+.project-card {
+  transition: border-color 0.3s, background 0.3s;
+}
+.project-card.toolkit-highlight {
+  border-color: theme("colors.accent");
+  background: linear-gradient(180deg, rgba(70, 224, 196, 0.06), transparent);
+}
+.project-card.toolkit-highlight .project-title {
+  color: theme("colors.accent");
+}
+
+.heat-cell {
+  aspect-ratio: 1;
+  border-radius: 2px;
+  background: theme("colors.line");
+}
+.heat-cell[data-level="1"] { background: rgba(57, 211, 83, 0.3); }
+.heat-cell[data-level="2"] { background: rgba(57, 211, 83, 0.55); }
+.heat-cell[data-level="3"] { background: rgba(57, 211, 83, 0.8); }
+.heat-cell[data-level="4"] { background: rgba(57, 211, 83, 1); }
+.heat-cell.leet[data-level="1"] { background: rgba(255, 183, 3, 0.3); }
+.heat-cell.leet[data-level="2"] { background: rgba(255, 183, 3, 0.55); }
+.heat-cell.leet[data-level="3"] { background: rgba(255, 183, 3, 0.8); }
+.heat-cell.leet[data-level="4"] { background: rgba(255, 183, 3, 1); }
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-label {
+    display: none !important;
+  }
+}
