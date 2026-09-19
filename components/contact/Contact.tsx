@@ -61,6 +61,8 @@ export default function Contact() {
         <form onSubmit={handleSubmit} className="mt-12 flex max-w-[520px] flex-col gap-4">
           <input
             type="text"
+            name="name"
+            autoComplete="name"
             required
             placeholder="Your name"
             aria-label="Your name"
@@ -70,6 +72,8 @@ export default function Contact() {
           />
           <input
             type="email"
+            name="email"
+            autoComplete="email"
             required
             placeholder="Your email"
             aria-label="Your email"
@@ -78,6 +82,7 @@ export default function Contact() {
             className="border-b border-line bg-transparent px-0.5 py-3 text-fg outline-none focus:border-accent"
           />
           <textarea
+            name="message"
             required
             rows={4}
             placeholder="What are you building?"

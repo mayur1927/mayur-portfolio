@@ -15,7 +15,7 @@ export default function CustomCursor() {
   const [label, setLabel] = useState("");
 
   useEffect(() => {
-    if (typeof window === "undefined" || "ontouchstart" in window) return;
+    if (typeof window === "undefined" || window.matchMedia("(pointer: coarse) and (hover: none)").matches) return;
 
     const move = (e: MouseEvent) => {
       if (dotRef.current) {

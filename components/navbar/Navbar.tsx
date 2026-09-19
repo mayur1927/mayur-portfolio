@@ -16,6 +16,9 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   return (
@@ -26,7 +29,7 @@ export default function Navbar() {
           scrolled && "border-b border-line bg-bg/80 py-3.5 backdrop-blur-md"
         )}
       >
-        <a href="#top" className="font-display text-base font-semibold">
+        <a href="/#top" className="font-display text-base font-semibold">
           MAYUR.C
         </a>
         <nav className="hidden gap-7 md:flex" aria-label="Primary">

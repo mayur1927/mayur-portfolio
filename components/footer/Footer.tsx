@@ -24,7 +24,7 @@ export default function Footer() {
               EMAIL ↗
             </a>
           </div>
-          <a href="#top" className="font-mono text-xs text-fg-faint hover:text-accent">
+          <a href="/#top" className="font-mono text-xs text-fg-faint hover:text-accent">
             BACK TO TOP ↑
           </a>
         </div>

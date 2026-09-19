@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   description:
     "Mayur Chaudhari — Computer Engineering student building full-stack, AI/NLP and Android applications.",
   location: "Pune, Maharashtra, India",
-  url: "https://mayur-portfolio.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://mayur-portfolio-mauve.vercel.app",
 };
 
 export const SOCIAL_LINKS = {
@@ -21,12 +21,13 @@ export const ROLES = [
 ];
 
 export const NAV_LINKS = [
-  { href: "#work", label: "WORK" },
-  { href: "#toolkit", label: "STACK" },
-  { href: "#github", label: "GITHUB" },
-  { href: "#leetcode", label: "LEETCODE" },
-  { href: "#about", label: "ABOUT" },
-  { href: "#contact", label: "CONTACT" },
+  { href: "/#work", label: "WORK" },
+  { href: "/#toolkit", label: "STACK" },
+  { href: "/#github", label: "GITHUB" },
+  { href: "/#leetcode", label: "LEETCODE" },
+  { href: "/#education", label: "EDUCATION" },
+  { href: "/#about", label: "ABOUT" },
+  { href: "/#contact", label: "CONTACT" },
 ];
 
 export const EDUCATION = [
