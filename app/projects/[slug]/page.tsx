@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PROJECTS, getProjectBySlug } from "@/lib/projects";
+import AtelierVisual, { AtelierFlow } from "@/components/projects/AtelierVisual";
+import SkyLensVisual from "@/components/projects/SkyLensVisual";
+import ResumeAnalyzerVisual from "@/components/projects/ResumeAnalyzerVisual";
 
 interface ProjectPageProps {
   params: { slug: string };
@@ -31,11 +34,45 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           ← BACK TO WORK
         </Link>
 
-        <h1 className="mt-7 font-display text-[clamp(2rem,6vw,3.4rem)] font-semibold">{project.title}</h1>
+        <div className="mt-7 flex flex-wrap items-center gap-3.5">
+          <h1 className="font-display text-[clamp(2rem,6vw,3.4rem)] font-semibold">{project.title}</h1>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-accent bg-accent/10 px-4 py-1.5 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-bg"
+            >
+              LIVE DEMO ↗
+            </a>
+          ) : null}
+        </div>
         <p className="mt-2.5 font-mono text-xs tracking-wide text-accent">{project.category}</p>
 
         <Section heading="PROBLEM">{project.problem}</Section>
         <Section heading="SOLUTION">{project.solution}</Section>
+
+        {project.slug === "atelier" && (
+          <div className="mt-9">
+            <h4 className="mb-3.5 font-mono text-xs tracking-[0.1em] text-fg-faint">VISUAL WORKFLOW & PRODUCTS</h4>
+            <AtelierFlow />
+            <AtelierVisual />
+          </div>
+        )}
+
+        {project.slug === "skylens" && (
+          <div className="mt-9">
+            <h4 className="mb-3.5 font-mono text-xs tracking-[0.1em] text-fg-faint">APP INTERFACE</h4>
+            <SkyLensVisual />
+          </div>
+        )}
+
+        {project.slug === "ai-resume-analyzer" && (
+          <div className="mt-9">
+            <h4 className="mb-3.5 font-mono text-xs tracking-[0.1em] text-fg-faint">ANALYSIS PIPELINE</h4>
+            <ResumeAnalyzerVisual />
+          </div>
+        )}
 
         <div className="mt-9">
           <h4 className="mb-2.5 font-mono text-xs tracking-[0.1em] text-fg-faint">TECHNOLOGIES</h4>

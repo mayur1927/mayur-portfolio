@@ -28,8 +28,8 @@ export default function Toolkit() {
       <div className="wrap">
         <SectionHeading
           kicker="TOOLKIT"
-          title="Hover a skill, see it in action."
-          description="Skills tied to a project below light it up — the rest are just tools I reach for often."
+          title="Skills & Technologies"
+          description="Technologies I work with to build full-stack applications, Android apps, and AI-powered systems."
         />
         <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-9">
           {TOOLKIT.map((cat) => (

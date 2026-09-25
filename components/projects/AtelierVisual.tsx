@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
+
 const PRODUCTS = [
-  { name: "Product A", tag: "IN STOCK" },
-  { name: "Product B", tag: "IN STOCK" },
-  { name: "Product C", tag: "LOW STOCK" },
-  { name: "Product D", tag: "IN STOCK" },
+  { name: "Chronograph Noir", tag: "IN STOCK", image: "/images/atelier/watch.jpg" },
+  { name: "Leather Tote Bag", tag: "IN STOCK", image: "/images/atelier/tote.jpg" },
+  { name: "Aura Headphones", tag: "LOW STOCK", image: "/images/atelier/audio.jpg" },
+  { name: "Velvet Oud Parfum", tag: "IN STOCK", image: "/images/atelier/perfume.jpg" },
 ];
 
 /** Atelier: horizontally-scrolling product cards, luxury-commerce styling. */
@@ -17,10 +19,15 @@ export default function AtelierVisual() {
           className="flex h-[260px] w-[200px] flex-shrink-0 flex-col justify-end rounded-2xl border border-line p-4 transition-transform duration-300 hover:-translate-y-2 hover:border-accent-2"
           style={{ background: "linear-gradient(155deg, #171018, #0d0a10)", scrollSnapAlign: "start" }}
         >
-          <div
-            className="mb-3.5 flex-1 rounded-[10px]"
-            style={{ background: "linear-gradient(135deg, rgba(139,127,255,.22), rgba(139,127,255,.02))" }}
-          />
+          <div className="relative mb-3.5 flex-1 overflow-hidden rounded-[10px]">
+            <Image
+              src={p.image}
+              alt={p.name}
+              fill
+              className="object-cover transition-transform duration-500 hover:scale-105"
+              sizes="200px"
+            />
+          </div>
           <div className="font-display text-base font-semibold">{p.name}</div>
           <div className="mt-1 font-mono text-[0.65rem] text-fg-faint">{p.tag}</div>
         </div>

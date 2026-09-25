@@ -37,3 +37,15 @@ export function getGmailComposeUrl(toEmail: string, subject?: string, body?: str
   }
   return url;
 }
+
+/** Smoothly scrolls the window to top using Lenis if available, or native smooth scroll. */
+export function scrollToTop() {
+  if (typeof window !== "undefined") {
+    const lenis = (window as any).__lenis;
+    if (lenis && typeof lenis.scrollTo === "function") {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+}

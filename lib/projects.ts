@@ -15,21 +15,22 @@ export interface ProjectData {
 
 export const PROJECTS: ProjectData[] = [
   {
-    slug: "skylens",
+    slug: "ai-resume-analyzer",
     index: "01 / 03",
-    title: "SkyLens",
-    category: "ANDROID · WEATHER · API",
-    technologies: ["Kotlin", "Jetpack Compose", "REST API"],
-    skillIds: ["kotlin", "jetpack", "rest-api", "android", "java", "api"],
+    title: "AI Resume Analyzer",
+    category: "AI · NLP · FULL-STACK",
+    technologies: ["Python", "FastAPI", "Streamlit", "PostgreSQL", "spaCy"],
+    skillIds: ["python", "fastapi", "streamlit", "postgresql", "spacy", "nlp", "ml", "sql", "api"],
     description:
-      "An Android weather application that retrieves and displays real-time weather information using a REST-based weather API, with a responsive Jetpack Compose UI and asynchronous data handling for forecasts and location-based conditions.",
+      "Analyzes resumes against job descriptions and generates an ATS-style compatibility score — PDF text extraction, spaCy-based skill identification, job-description matching, missing-skill detection and automated improvement suggestions, backed by PostgreSQL and a Streamlit + FastAPI architecture.",
     problem:
-      "Mobile weather apps are often heavy and cluttered. The goal was a fast, clean Android app focused on the essentials: current conditions, forecasts and location-aware data.",
+      "Job seekers rarely know how their resume actually scores against an ATS or a specific job description, or which skills are missing.",
     solution:
-      "A native Android app built with Jetpack Compose, pulling live data from a REST weather API with asynchronous fetch/parse handling so the UI never blocks while data loads.",
-    architecture: "Weather API  →  Async Fetch  →  Data Model  →  Compose UI",
+      "Upload a resume and a job description; the system extracts text from the PDF, identifies skills with spaCy, matches against the job description, flags missing skills and generates automated improvement suggestions plus a downloadable report.",
+    architecture:
+      "Streamlit UI  →  FastAPI Backend  →  spaCy NLP Engine  →  PostgreSQL\n\nResume.pdf → Text Extraction → Skill Detection → Job Matching → Report",
     githubUrl: "",
-    liveUrl: "",
+    liveUrl: "https://ai-resume-analyzer-ten-gamma.vercel.app/",
   },
   {
     slug: "atelier",
@@ -47,23 +48,22 @@ export const PROJECTS: ProjectData[] = [
     architecture:
       "React Frontend  →  FastAPI (REST)  →  PostgreSQL\n\nPRODUCT → AUTH → CART → ORDER",
     githubUrl: "",
-    liveUrl: "",
+    liveUrl: "https://atelier-storefront-alpha.vercel.app/",
   },
   {
-    slug: "ai-resume-analyzer",
+    slug: "skylens",
     index: "03 / 03",
-    title: "AI Resume Analyzer",
-    category: "AI · NLP · FULL-STACK",
-    technologies: ["Python", "FastAPI", "Streamlit", "PostgreSQL", "spaCy"],
-    skillIds: ["python", "fastapi", "streamlit", "postgresql", "spacy", "nlp", "ml", "sql", "api"],
+    title: "SkyLens",
+    category: "ANDROID · WEATHER · API",
+    technologies: ["Kotlin", "Jetpack Compose", "REST API"],
+    skillIds: ["kotlin", "jetpack", "rest-api", "android", "java", "api"],
     description:
-      "Analyzes resumes against job descriptions and generates an ATS-style compatibility score — PDF text extraction, spaCy-based skill identification, job-description matching, missing-skill detection and automated improvement suggestions, backed by PostgreSQL and a Streamlit + FastAPI architecture.",
+      "An Android weather application that retrieves and displays real-time weather information using a REST-based weather API, with a responsive Jetpack Compose UI and asynchronous data handling for forecasts and location-based conditions.",
     problem:
-      "Job seekers rarely know how their resume actually scores against an ATS or a specific job description, or which skills are missing.",
+      "Mobile weather apps are often heavy and cluttered. The goal was a fast, clean Android app focused on the essentials: current conditions, forecasts and location-aware data.",
     solution:
-      "Upload a resume and a job description; the system extracts text from the PDF, identifies skills with spaCy, matches against the job description, flags missing skills and generates automated improvement suggestions plus a downloadable report.",
-    architecture:
-      "Streamlit UI  →  FastAPI Backend  →  spaCy NLP Engine  →  PostgreSQL\n\nResume.pdf → Text Extraction → Skill Detection → Job Matching → Report",
+      "A native Android app built with Jetpack Compose, pulling live data from a REST weather API with asynchronous fetch/parse handling so the UI never blocks while data loads.",
+    architecture: "Weather API  →  Async Fetch  →  Data Model  →  Compose UI",
     githubUrl: "",
     liveUrl: "",
   },

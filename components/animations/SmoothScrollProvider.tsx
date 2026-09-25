@@ -22,6 +22,8 @@ export default function SmoothScrollProvider({ children }: { children: ReactNode
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
+    (window as any).__lenis = lenis;
+
     lenis.on("scroll", ScrollTrigger.update);
 
     const updateLenis = (time: number) => {
@@ -31,6 +33,7 @@ export default function SmoothScrollProvider({ children }: { children: ReactNode
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      delete (window as any).__lenis;
       lenis.destroy();
       gsap.ticker.remove(updateLenis);
     };

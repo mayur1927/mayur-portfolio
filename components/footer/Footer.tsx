@@ -1,5 +1,7 @@
+"use client";
+
 import { SITE_CONFIG, SOCIAL_LINKS } from "@/lib/constants";
-import { getGmailComposeUrl } from "@/lib/utils";
+import { getGmailComposeUrl, scrollToTop } from "@/lib/utils";
 
 export default function Footer() {
   return (
@@ -30,9 +32,14 @@ export default function Footer() {
               EMAIL ↗
             </a>
           </div>
-          <a href="/#top" className="font-mono text-xs text-fg-faint hover:text-accent">
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="font-mono text-xs text-fg-faint transition-colors hover:text-accent cursor-pointer"
+            aria-label="Scroll to top of page"
+          >
             BACK TO TOP ↑
-          </a>
+          </button>
         </div>
         <p className="mt-7 font-mono text-[0.68rem] text-fg-faint">© 2026 {SITE_CONFIG.name.toUpperCase()}</p>
       </div>

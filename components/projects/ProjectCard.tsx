@@ -19,9 +19,22 @@ export default function ProjectCard({ project, visual, flowDiagram, extra }: Pro
       <div className="mb-11 flex flex-wrap items-end justify-between gap-6">
         <div>
           <p className="font-mono text-xs text-fg-faint">{project.index}</p>
-          <h3 className="project-title font-display text-[clamp(2.2rem,6vw,4.2rem)] font-semibold tracking-tight">
-            {project.title}
-          </h3>
+          <div className="flex flex-wrap items-center gap-3.5 pt-1">
+            <h3 className="project-title font-display text-[clamp(2.2rem,6vw,4.2rem)] font-semibold tracking-tight">
+              {project.title}
+            </h3>
+            {project.liveUrl ? (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="LIVE ↗"
+                className="inline-flex items-center gap-1.5 rounded-full border border-accent bg-accent/10 px-4 py-1.5 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-bg"
+              >
+                LIVE DEMO ↗
+              </a>
+            ) : null}
+          </div>
           <p className="mt-2.5 font-mono text-[0.72rem] tracking-wide text-fg-dim">{project.category}</p>
         </div>
       </div>
