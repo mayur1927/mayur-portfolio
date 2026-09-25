@@ -36,23 +36,22 @@ export default function Toolkit() {
             <div key={cat.category}>
               <h3 className="mb-3.5 font-mono text-xs tracking-[0.1em] text-fg-faint">{cat.category}</h3>
               <ul className="flex flex-col gap-0.5">
-                {cat.items.map((item) => (
-                  <li
-                    key={item.name}
-                    tabIndex={item.skillId ? 0 : undefined}
-                    onMouseEnter={item.skillId ? () => activate(item.skillId!) : undefined}
-                    onMouseLeave={item.skillId ? deactivate : undefined}
-                    onFocus={item.skillId ? () => activate(item.skillId!) : undefined}
-                    onBlur={item.skillId ? deactivate : undefined}
-                    className={`inline-block py-1 font-display text-[1.15rem] transition-[color,transform] duration-200 ${
-                      item.skillId
-                        ? "cursor-pointer text-fg-dim hover:translate-x-1.5 hover:text-accent focus-visible:translate-x-1.5 focus-visible:text-accent"
-                        : "text-fg-dim"
-                    }`}
-                  >
-                    {item.name}
-                  </li>
-                ))}
+                {cat.items.map((item) => {
+                  const skillId = item.skillId || item.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+                  return (
+                    <li
+                      key={`${cat.category}-${item.name}`}
+                      tabIndex={0}
+                      onMouseEnter={() => activate(skillId)}
+                      onMouseLeave={deactivate}
+                      onFocus={() => activate(skillId)}
+                      onBlur={deactivate}
+                      className="inline-block py-1 font-display text-[1.15rem] transition-[color,transform] duration-200 cursor-pointer text-fg-dim hover:translate-x-1.5 hover:text-accent focus-visible:translate-x-1.5 focus-visible:text-accent outline-none"
+                    >
+                      {item.name}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

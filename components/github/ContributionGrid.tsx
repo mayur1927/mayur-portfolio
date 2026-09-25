@@ -3,7 +3,7 @@ import { formatDateLabel } from "@/lib/utils";
 
 export default function ContributionGrid({ days }: { days: ContributionDay[] }) {
   return (
-    <div className="grid grid-cols-[repeat(26,1fr)] gap-1" role="img" aria-label="GitHub contribution activity over the past year">
+    <div className="grid grid-cols-[repeat(26,1fr)] gap-1" role="img" aria-label="GitHub contribution activity since January 1, 2026">
       {days.map((day) => (
         <div
           key={day.date}

@@ -1,4 +1,5 @@
 import { SITE_CONFIG, SOCIAL_LINKS } from "@/lib/constants";
+import { getGmailComposeUrl } from "@/lib/utils";
 
 export default function Footer() {
   return (
@@ -20,7 +21,12 @@ export default function Footer() {
                 LINKEDIN ↗
               </a>
             )}
-            <a href={`mailto:${SOCIAL_LINKS.email}`} className="hover:text-accent">
+            <a
+              href={getGmailComposeUrl(SOCIAL_LINKS.email || "mayurchaudhari1927@gmail.com")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
               EMAIL ↗
             </a>
           </div>

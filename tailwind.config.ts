@@ -18,7 +18,6 @@ const config: Config = {
         accent: "#46e0c4",
         "accent-2": "#8b7fff",
         gh: "#39d353",
-        lc: "#ffb703",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

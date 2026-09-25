@@ -2,18 +2,30 @@
 
 import { useState, type FormEvent } from "react";
 import { SOCIAL_LINKS } from "@/lib/constants";
+import { getGmailComposeUrl } from "@/lib/utils";
 import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<string | null>(null);
+
+  const contactEmail = SOCIAL_LINKS.email || "mayurchaudhari1927@gmail.com";
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio contact from ${name}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
-    window.location.href = `mailto:${SOCIAL_LINKS.email}?subject=${subject}&body=${body}`;
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setStatus("Please fill in all fields.");
+      return;
+    }
+
+    setStatus("Opening Gmail...");
+    const subject = `Portfolio Contact — ${name.trim()}`;
+    const body = `Name: ${name.trim()}\nEmail: ${email.trim()}\n\nMessage:\n${message.trim()}`;
+    const gmailUrl = getGmailComposeUrl(contactEmail, subject, body);
+
+    window.open(gmailUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -28,11 +40,13 @@ export default function Contact() {
 
         <div className="mt-8 flex flex-wrap gap-7 font-mono text-sm">
           <a
-            href={`mailto:${SOCIAL_LINKS.email}`}
+            href={getGmailComposeUrl(contactEmail)}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor="OPEN ↗"
             className="border-b border-fg-faint pb-1 transition-colors hover:border-accent hover:text-accent"
           >
-            {SOCIAL_LINKS.email}
+            {contactEmail}
           </a>
           {SOCIAL_LINKS.github ? (
             <a
@@ -67,7 +81,10 @@ export default function Contact() {
             placeholder="Your name"
             aria-label="Your name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+              if (status) setStatus(null);
+            }}
             className="border-b border-line bg-transparent px-0.5 py-3 text-fg outline-none focus:border-accent"
           />
           <input
@@ -78,7 +95,10 @@ export default function Contact() {
             placeholder="Your email"
             aria-label="Your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (status) setStatus(null);
+            }}
             className="border-b border-line bg-transparent px-0.5 py-3 text-fg outline-none focus:border-accent"
           />
           <textarea
@@ -88,7 +108,10 @@ export default function Contact() {
             placeholder="What are you building?"
             aria-label="Message"
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              if (status) setStatus(null);
+            }}
             className="border-b border-line bg-transparent px-0.5 py-3 text-fg outline-none focus:border-accent"
           />
           <MagneticButton
@@ -98,8 +121,11 @@ export default function Contact() {
             SEND MESSAGE
           </MagneticButton>
         </form>
+
+        {status && <p className="mt-3 font-mono text-xs text-accent">{status}</p>}
+
         <p className="mt-3 font-mono text-xs text-fg-faint">
-          Opens your email client with this message pre-filled — this page has no backend to store submissions.
+          Opens Gmail in a new tab with your message pre-filled.
         </p>
       </div>
     </section>

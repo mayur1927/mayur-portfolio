@@ -3,7 +3,7 @@
 A production Next.js portfolio for Mayur Chaudhari — Computer Engineering
 student building full-stack, AI/NLP and Android applications.
 
-Live GitHub and LeetCode activity, three project case studies, and an
+Live GitHub activity, three project case studies, and an
 animation system built on GSAP/ScrollTrigger, Framer Motion and Lenis.
 
 ## Features
@@ -14,9 +14,6 @@ animation system built on GSAP/ScrollTrigger, Framer Motion and Lenis.
 - **Real GitHub data** — public profile stats via the GitHub REST API, and
   the contribution calendar via the GitHub GraphQL API when a token is
   configured. No numbers are ever hardcoded or invented.
-- **Real LeetCode data** — solved counts and a submission heatmap from a
-  public community stats source, with an explicit "unavailable" state
-  (never fabricated numbers) if that source is down.
 - **Three project case studies** (`/projects/[slug]`) generated from a
   single typed data source (`lib/projects.ts`) — no duplicated markup.
 - **Interactive toolkit** — hovering a linked skill highlights the project
@@ -42,29 +39,26 @@ app/
   sitemap.ts / robots.ts
   api/
     github/route.ts      GET /api/github  → real GitHub activity JSON
-    leetcode/route.ts     GET /api/leetcode → real LeetCode activity JSON
   projects/[slug]/page.tsx  Dynamic case-study route per project
 
 components/
-  navbar/ hero/ about/ projects/ toolkit/ github/ leetcode/
+  navbar/ hero/ about/ projects/ toolkit/ github/
   education/ contact/ footer/ cursor/ animations/ ui/
 
 lib/
   github.ts        Server-side GitHub REST + GraphQL fetching (cached)
-  leetcode.ts       Server-side LeetCode community-API fetching (cached)
   projects.ts       Central project data model
   constants.ts      Site config, nav links, toolkit data, education data
   utils.ts
 
 types/
-  github.ts  leetcode.ts
+  github.ts
 ```
 
-The GitHub/LeetCode sections (`components/github/GitHubActivity.tsx`,
-`components/leetcode/LeetCodeActivity.tsx`) are `async` Server Components
-that call `lib/github.ts` / `lib/leetcode.ts` directly at render time —
+The GitHub section (`components/github/GitHubActivity.tsx`) is an `async` Server Component
+that calls `lib/github.ts` directly at render time —
 this avoids an extra client-side round trip and works with JS disabled.
-The `app/api/*/route.ts` handlers wrap the same `lib/` functions so the
+The `app/api/github/route.ts` handler wraps the same `lib/` function so the
 same data is also available as a plain JSON endpoint if you want to reuse
 it elsewhere.
 
@@ -77,9 +71,6 @@ Copy `.env.example` to `.env.local` and fill in what applies:
 GITHUB_USERNAME=
 GITHUB_TOKEN=
 
-# LeetCode
-LEETCODE_USERNAME=
-
 # Public social links
 NEXT_PUBLIC_GITHUB_URL=
 NEXT_PUBLIC_LINKEDIN_URL=
@@ -88,17 +79,13 @@ NEXT_PUBLIC_EMAIL=mayurchaudhari1927@gmail.com
 
 Notes:
 
-- `GITHUB_USERNAME` alone gets you real public profile stats (repos,
-  followers, following). Adding `GITHUB_TOKEN` (a personal access token —
-  no special scopes needed for public data) additionally unlocks the real
-  contribution calendar, since GitHub only exposes contribution history
-  through its authenticated GraphQL API, not the public REST API.
+- `GITHUB_USERNAME` alone gets you real public profile stats (public repos).
+  Adding `GITHUB_TOKEN` (a personal access token — no special scopes needed for public data)
+  additionally unlocks the contribution calendar from 2026 onward, since GitHub only exposes
+  contribution history through its authenticated GraphQL API, not the public REST API.
 - Never prefix `GITHUB_TOKEN` with `NEXT_PUBLIC_` — that would ship it to
   the browser. It's read only inside `lib/github.ts`, which is a
   server-only module (enforced by the `server-only` package).
-- If `LEETCODE_USERNAME` is unset, or the upstream stats source is down,
-  the LeetCode section shows an honest "unavailable" message instead of
-  fake numbers.
 - Also fill in each project's `githubUrl` (and `liveUrl`, if applicable)
   in `lib/projects.ts` once those repos exist — they're intentionally left
   blank rather than guessed.

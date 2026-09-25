@@ -13,8 +13,6 @@ export default async function GitHubActivity() {
           {data.profile && (
             <div className="flex flex-wrap gap-8 font-mono">
               <Stat label="PUBLIC REPOS" value={data.profile.publicRepos} />
-              <Stat label="FOLLOWERS" value={data.profile.followers} />
-              <Stat label="FOLLOWING" value={data.profile.following} />
             </div>
           )}
         </div>
@@ -25,7 +23,7 @@ export default async function GitHubActivity() {
               <ContributionGrid days={data.days} />
               {data.totalContributions !== null && (
                 <p className="mt-4 font-mono text-xs text-fg-faint">
-                  {data.totalContributions} contributions in the last year
+                  {data.totalContributions} contributions in 2026 (Jan 1, 2026 — Present)
                 </p>
               )}
             </div>

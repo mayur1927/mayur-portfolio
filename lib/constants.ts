@@ -8,8 +8,8 @@ export const SITE_CONFIG = {
 };
 
 export const SOCIAL_LINKS = {
-  github: process.env.NEXT_PUBLIC_GITHUB_URL || "",
-  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "",
+  github: process.env.NEXT_PUBLIC_GITHUB_URL || "https://github.com/mayur1927",
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/in/mayur-chaudhari-160944305",
   email: process.env.NEXT_PUBLIC_EMAIL || "mayurchaudhari1927@gmail.com",
 };
 
@@ -24,7 +24,6 @@ export const NAV_LINKS = [
   { href: "/#work", label: "WORK" },
   { href: "/#toolkit", label: "STACK" },
   { href: "/#github", label: "GITHUB" },
-  { href: "/#leetcode", label: "LEETCODE" },
   { href: "/#education", label: "EDUCATION" },
   { href: "/#about", label: "ABOUT" },
   { href: "/#contact", label: "CONTACT" },
@@ -53,36 +52,61 @@ export const EDUCATION = [
 
 export const TOOLKIT = [
   { category: "LANGUAGES", items: [
-    { name: "Python" }, { name: "Java" }, { name: "JavaScript", skillId: "javascript" },
-    { name: "Kotlin", skillId: "kotlin" }, { name: "SQL" },
+    { name: "Python", skillId: "python" },
+    { name: "Java", skillId: "java" },
+    { name: "JavaScript", skillId: "javascript" },
+    { name: "Kotlin", skillId: "kotlin" },
+    { name: "SQL", skillId: "sql" },
   ]},
   { category: "AI / ML", items: [
-    { name: "Machine Learning", skillId: "ml" }, { name: "NLP", skillId: "nlp" },
-    { name: "spaCy", skillId: "spacy" }, { name: "PyTorch" },
+    { name: "Machine Learning", skillId: "ml" },
+    { name: "NLP", skillId: "nlp" },
+    { name: "spaCy", skillId: "spacy" },
+    { name: "PyTorch", skillId: "pytorch" },
   ]},
   { category: "FRONTEND", items: [
-    { name: "React.js", skillId: "react" }, { name: "JavaScript", skillId: "javascript" },
-    { name: "HTML5" }, { name: "CSS3" }, { name: "Streamlit", skillId: "streamlit" },
-    { name: "Responsive UI" },
+    { name: "React.js", skillId: "react" },
+    { name: "JavaScript", skillId: "javascript" },
+    { name: "HTML5", skillId: "html" },
+    { name: "CSS3", skillId: "css" },
+    { name: "Streamlit", skillId: "streamlit" },
+    { name: "Responsive UI", skillId: "responsive" },
   ]},
   { category: "BACKEND", items: [
-    { name: "FastAPI", skillId: "fastapi" }, { name: "REST APIs", skillId: "rest-api" },
-    { name: "JSON" }, { name: "API Integration" },
+    { name: "FastAPI", skillId: "fastapi" },
+    { name: "REST APIs", skillId: "rest-api" },
+    { name: "JSON", skillId: "json" },
+    { name: "API Integration", skillId: "api" },
   ]},
   { category: "DATABASES", items: [
-    { name: "PostgreSQL", skillId: "postgresql" }, { name: "MySQL" }, { name: "MongoDB" }, { name: "SQL" },
+    { name: "PostgreSQL", skillId: "postgresql" },
+    { name: "MySQL", skillId: "mysql" },
+    { name: "MongoDB", skillId: "mongodb" },
+    { name: "SQL", skillId: "sql" },
   ]},
   { category: "CLOUD", items: [
-    { name: "AWS" }, { name: "EC2" }, { name: "VPC" }, { name: "Subnets" },
+    { name: "AWS", skillId: "aws" },
+    { name: "EC2", skillId: "ec2" },
+    { name: "VPC", skillId: "vpc" },
+    { name: "Subnets", skillId: "subnets" },
   ]},
   { category: "MOBILE", items: [
-    { name: "Android", skillId: "kotlin" }, { name: "Jetpack Compose", skillId: "jetpack" },
+    { name: "Android", skillId: "android" },
+    { name: "Jetpack Compose", skillId: "jetpack" },
   ]},
   { category: "TOOLS", items: [
-    { name: "Git" }, { name: "GitHub" }, { name: "Postman" }, { name: "VS Code" }, { name: "Android Studio" },
+    { name: "Git", skillId: "git" },
+    { name: "GitHub", skillId: "github" },
+    { name: "Postman", skillId: "postman" },
+    { name: "VS Code", skillId: "vscode" },
+    { name: "Android Studio", skillId: "android-studio" },
   ]},
   { category: "CORE", items: [
-    { name: "Data Structures & Algorithms" }, { name: "OOP" }, { name: "DBMS" },
-    { name: "Operating Systems" }, { name: "Software Engineering" }, { name: "Problem Solving" },
+    { name: "Data Structures & Algorithms", skillId: "dsa" },
+    { name: "OOP", skillId: "oop" },
+    { name: "DBMS", skillId: "dbms" },
+    { name: "Operating Systems", skillId: "os" },
+    { name: "Software Engineering", skillId: "se" },
+    { name: "Problem Solving", skillId: "problem-solving" },
   ]},
 ];

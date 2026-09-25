@@ -47,8 +47,6 @@ export async function getGithubActivity(): Promise<GithubActivityResponse> {
       htmlUrl: data.html_url,
       avatarUrl: data.avatar_url,
       publicRepos: data.public_repos,
-      followers: data.followers,
-      following: data.following,
     };
   } catch (err) {
     return {
@@ -108,22 +106,28 @@ export async function getGithubActivity(): Promise<GithubActivityResponse> {
     if (!calendar) throw new Error("Contribution calendar missing from response.");
 
     const weeks: GraphQLWeek[] = calendar.weeks;
-    const flatCounts = weeks.flatMap((w) => w.contributionDays.map((d) => d.contributionCount));
-    const max = Math.max(0, ...flatCounts);
-
-    const days: ContributionDay[] = weeks.flatMap((w) =>
+    const allDays: ContributionDay[] = weeks.flatMap((w) =>
       w.contributionDays.map((d) => ({
         date: d.date,
         count: d.contributionCount,
-        level: levelForCount(d.contributionCount, max),
+        level: 0,
       }))
     );
+
+    // Filter to activity from January 1, 2026 onward
+    const days2026 = allDays.filter((d) => d.date >= "2026-01-01");
+    const total2026Contributions = days2026.reduce((sum, d) => sum + d.count, 0);
+    const max = Math.max(0, ...days2026.map((d) => d.count));
+
+    days2026.forEach((d) => {
+      d.level = levelForCount(d.count, max);
+    });
 
     return {
       configured: true,
       profile,
-      totalContributions: calendar.totalContributions,
-      days,
+      totalContributions: total2026Contributions,
+      days: days2026,
       calendarAvailable: true,
     };
   } catch (err) {

@@ -25,3 +25,15 @@ export function levelForCount(count: number, max: number): 0 | 1 | 2 | 3 | 4 {
   if (ratio > 0.2) return 2;
   return 1;
 }
+
+/** Generates a Gmail web compose URL for reliable web browser email opening. */
+export function getGmailComposeUrl(toEmail: string, subject?: string, body?: string): string {
+  let url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(toEmail)}`;
+  if (subject) {
+    url += `&su=${encodeURIComponent(subject)}`;
+  }
+  if (body) {
+    url += `&body=${encodeURIComponent(body)}`;
+  }
+  return url;
+}

@@ -3,8 +3,6 @@ export interface GithubProfile {
   htmlUrl: string;
   avatarUrl: string;
   publicRepos: number;
-  followers: number;
-  following: number;
 }
 
 export interface ContributionDay {

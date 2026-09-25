@@ -61,10 +61,6 @@ body {
 .heat-cell[data-level="2"] { background: rgba(57, 211, 83, 0.55); }
 .heat-cell[data-level="3"] { background: rgba(57, 211, 83, 0.8); }
 .heat-cell[data-level="4"] { background: rgba(57, 211, 83, 1); }
-.heat-cell.leet[data-level="1"] { background: rgba(255, 183, 3, 0.3); }
-.heat-cell.leet[data-level="2"] { background: rgba(255, 183, 3, 0.55); }
-.heat-cell.leet[data-level="3"] { background: rgba(255, 183, 3, 0.8); }
-.heat-cell.leet[data-level="4"] { background: rgba(255, 183, 3, 1); }
 
 @media (pointer: coarse) {
   .cursor-dot,
